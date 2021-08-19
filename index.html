@@ -6,13 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Palindrome Birthday</title>
     <script src="app.js" defer type="text/javascript"></script>
+
+    <style>
+      body {
+        background-color: black;
+      }
+      #heading {
+        color: skyblue;
+        background-color: grey;
+        display: inline;
+        border-radius: 10px;
+        margin-left: 40%;
+        padding: 1rem;
+        border-color: solid black;
+      }
+
+      #input-label {
+        display: block;
+        margin-left: 42.5%;
+        margin-top: 6%;
+        font-size: x-large;
+        font-family: cursive;
+        color: white;
+      }
+      #dob-input {
+        margin-left: 46%;
+        margin-top: 15px;
+        padding: 0.5rem;
+        border-radius: 10px;
+        background-color: gray;
+        color: skyblue;
+        font-size: larger;
+      }
+
+      #check {
+        margin-left: 48%;
+        margin-top: 60px;
+        padding: 0.5rem;
+        width: 7rem;
+        border-color: white;
+        background-color: black;
+        color: skyblue;
+      }
+      #output {
+        color: white;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <h1>Palindrome Birthday!</h1>
+    <div></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1 id="heading">Palindrome Birthday!</h1>
     <div>
-      <label for="dob-input">Enter your date of birth:</label>
+      <label for="dob-input" id="input-label">Enter your date of birth:</label>
       <input type="date" id="dob-input" />
     </div>
     <button id="check">Check</button>
+    <h1 id="output"></h1>
   </body>
 </html>

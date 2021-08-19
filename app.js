@@ -1,139 +1,97 @@
+const dobInput = document.querySelector("#dob-input")
+const checkBtn = document.querySelector("#check")
+const output = document.querySelector("#output")
+
+
+
 function reverseString(string){
     const listOfChars = string.split("");
     const reverseListOfChars = listOfChars.reverse();
-    const reversedString = reverseListOfChars.join();
+    const reversedString = reverseListOfChars.join("");
     return reversedString;
 }
 
-
-function checkPalindrom(string){
+function checkPalindrome(string){
     const reverse = reverseString(string);
 
-    if(string == reverse){
+    if(string === reverse){
         return true;
     } else {
         return false;
     }
-    
+     
 }
 
-console.log(checkPalindrom("racecar"));
-console.log(checkPalindrom("777"));
-console.log(checkPalindrom("malayalam"));
-console.log(checkPalindrom("444"));
 
+function getAllDateFormat(dateString){
+        const ddmmyyyy = dateString.day + dateString.month + dateString.year;
+    const mmddyyyy = dateString.month + dateString.day + dateString.year;
+    const yyyymmdd = dateString.year + dateString.month + dateString.day;
+    const ddmmyy = dateString.day + dateString.month + dateString.year.slice(-2);
+    const mmddyy = dateString.month + dateString.day + dateString.year.slice(-2);
+    const yymmdd = dateString.year.slice(-2) + dateString.month + dateString.day;
 
+    return [ ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd]
+}
 
 
 
 
 
+function checkPalindromeForAllDateFormat(date){
+    const listOfPalindrome = getAllDateFormat(date);
 
+    const ifPalindrome = false;
 
+    for (var i=0; i=listOfPalindrome.length; i++){
+        if(checkPalindrome(listOfPalindrome[i])){
+            ifPalindrome = true;
+            break;
+        }
+    } 
+    return ifPalindrome;
+}
 
+function getDayMonthYear(dateInput){
+const dmy = dateInput.split("-")
+return { day: dmy[2], month: dmy[1], year: dmy[0]}
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const dobInput = document.querySelector("#dob-input")
-
-// const btnCheck = document.querySelector("#check")
-
- 
-
-
-
-// function reverseString(string) {
-//     const charList = string.split("");
-//     const reversedCharList =  charList.reverseString();
-//     const reversedString = reversedCharList.join("")
-//     return reversedString;
-// }
-
-// function isStringPalindrome(string) {
-//     const reversedString = reverseString(string);
-//     return string === reversedString;
-
-// }
-
-// function getDateAsString(date) {
-//     const dateInString = { day: "", month: "", year: ""}
-
-//     if (dateInString.day < 10) {
-//         dateInString.day = "0" + date.day;
-//     } else {
-//         dateInString.day = date.day.toString();
-//     }
-//     if (dateInString.month < 10) {
-//         dateInString.month = "0" + date.month;
-//     } else {
-//         dateInString.month = dateInString.toString();
-//     }
-
-//     dateInString.year = dateInString.toString();
-//     return dateInString;
-// }
-
-
-// function getDateInAllFormat(date){
+checkBtn.addEventListener("click",function(){
+    const dateObject = getDayMonthYear(dobInput.value);
+    const allFormat = getAllDateFormat(dateObject);
+    console.log(allFormat);
     
-//     const ddmmyyyy = date.day + date.month + date.year;
-//     const mmddyyyy = date.month + date.day + date.year;
-//     const yyyymmdd = date.year + date.month + date.day;
-//     const ddmmyy = date.day + date.month + date.year.slilce(-2);
-//     const mmddyy = date.month + date.day + date.year.slice(-2);
-//     const yymmdd = date.year.slice(-2) + date.month + date.day;
-    
-//     return [ ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yymmdd]
-// }
+let palindromes = []
 
-// function checkPalindromeForAllDateFormat(date) {
-//     const dateFormatList = getDateInAllFormat(date);
-//     const palindromeList = [];
-    
-//     for (var i=0; i<dateFormatList.length; i++) {
-//         const result = isStringPalindrome(dateFormatList[i]);
-//         palindromeList.push(result);
-//     }
-//     return palindromeList;
+    for (var i=0; i<allFormat.length; i++){
+
+        const finalPalindromeDecision = checkPalindrome(allFormat[i])
+        palindromes.push(finalPalindromeDecision)
+    }
+    console.log(palindromes)
+
+    let resultText = ""
+
+    for (var i=0; i<palindromes.length; i++){
+
+        if(palindromes[i] === true){
+            resultText = "Hurre! your birthday is a palindrome :)"
+            break;
+        }
+        resultText = "Uff! your birthday is not a palindrome :("
+    }
+output.textContent = resultText
+
+})
+
+
+
+
+
+
+
+
+
 
 
